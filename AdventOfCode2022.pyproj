@@ -22,12 +22,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AdventOfCode2022.py" />
+    <Compile Include="CaloriesCounter.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RockPaperScissor.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\day1.1.input" />
+    <Content Include="Resources\day2.1.input" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
