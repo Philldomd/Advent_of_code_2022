@@ -1,21 +1,11 @@
 import utils
 
-def caloriesCounter(input_path):
+def caloriesCounter(file):
     print("****** Calories Counter ******")
-    file = utils.fileReader(input_path)
-    elfes = [0]
-    elf_number = 0
-    for line in file:
-        if line == '\n':
-            elf_number += 1
-            elfes.append(0)
-        else:
-            elfes[elf_number] += int(line)
-    file.close()
-    file = utils.fileWriter(input_path+".out")
-    for x in elfes:
-        file.write(str(x)+'\n')
-    file.close
-    elfes.sort()
-    return elfes,elf_number
+    return max(list(map(sum, list(map(lambda x: list(map(int,x)), list(map(lambda x: x.split('\n'), file.split("\n\n"))))))))
+
+def caloriesCounterTopThree(file):
+    t = list(map(sum, list(map(lambda x: list(map(int,x)), list(map(lambda x: x.split('\n'), file.split("\n\n")))))))
+    t.sort()
+    return sum(t[-3:])
 

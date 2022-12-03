@@ -28,6 +28,9 @@
     <Compile Include="RockPaperScissor.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RucksackControl.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="utils.py">
       <SubType>Code</SubType>
     </Compile>
@@ -38,6 +41,8 @@
   <ItemGroup>
     <Content Include="Resources\day1.1.input" />
     <Content Include="Resources\day2.1.input" />
+    <Content Include="Resources\day3.1.input" />
+    <Content Include="Resources\day3.2.input" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
