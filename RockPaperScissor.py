@@ -14,8 +14,8 @@ def calcStrategy(t_elf,outcome):
 def tournament(file):
     print("****** Tournament ******")
     score = 0
-    for line in file.split('\n'):
-        elf, me = str(line).rstrip().split(" ")
+    for line in file.splitlines():
+        elf, me = str(line).split(" ")
         t_elf = 1 if elf == 'A' else 2 if elf == 'B' else 3 if elf == 'C' else 0
         t_me = 1 if me == 'X' else 2 if me == 'Y' else 3 if me == 'Z' else 0
         score += winner(t_elf, t_me)
@@ -23,8 +23,8 @@ def tournament(file):
 
 def tournament_cheat(file):
     score = 0
-    for line in file.split('\n'):
-        elf, outcome = str(line).rstrip().split(" ")
+    for line in file.splitlines():
+        elf, outcome = str(line).split(" ")
         t_elf = 1 if elf == 'A' else 2 if elf == 'B' else 3 if elf == 'C' else 0
         t_me = calcStrategy(t_elf, outcome)
         score += winner(t_elf, t_me)
