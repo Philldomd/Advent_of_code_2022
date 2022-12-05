@@ -1,5 +1,3 @@
-import utils
-
 def winner(t_elf, t_me):
     win = 0 if t_elf > t_me else 6 if t_me > t_elf else 3
     point = 6 if t_me + t_elf == 4 and win == 0 else 0 if t_me + t_elf == 4 and win == 6 else win

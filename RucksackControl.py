@@ -1,5 +1,3 @@
-import utils
-
 def priorityCalc(char):
     dec_char = ord(char)
     return dec_char - 96 if dec_char >= 97 else dec_char - 38
