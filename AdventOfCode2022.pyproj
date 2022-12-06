@@ -28,6 +28,9 @@
     <Compile Include="CampCleanup.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CommunicationTuning.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SupplyStack.py">
       <SubType>Code</SubType>
     </Compile>
@@ -50,6 +53,10 @@
     <Content Include="Resources\day3.input" />
     <Content Include="Resources\day4.input" />
     <Content Include="Resources\day5.input" />
+    <Content Include="Resources\day6.1.input" />
+    <Content Include="Resources\day6.input">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
