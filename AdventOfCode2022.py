@@ -87,15 +87,17 @@ if DAY == 0 or DAY == 5:
 
 if DAY == 0 or DAY == 6:
     print("\n\n\no-,/O\\.-o-| Day 6 |-o-./O\\,-o\n")
-    with utils.fileReader("Resources/day6.1.input") as file:
+    with utils.fileReader("Resources/day6.input") as file:
         file_buffer = file.read()
         file.close()
+        DATA_MARKER_LENGTH = 4
+        MESSAGE_MARKER_LENGTH = 14
         if os.name == 'posix':
-            print('The first unique sequence of four letters, the data starts after: \x1b[0;33;40m', CommunicationTuning.fineTuneDataMarker(file_buffer),'\x1b[0;37;40m')
-            print('The Elves has the following number of shared cleaning areas: \x1b[0;33;40m', CommunicationTuning.fineTuneDataMessage(file_buffer),'\x1b[0;37;40m')
+            print('The first unique sequence of four letters, the data starts after: \x1b[0;33;40m', CommunicationTuning.fineTuneDataMarker(file_buffer, DATA_MARKER_LENGTH),'\x1b[0;37;40m')
+            print('The Elves has the following number of shared cleaning areas: \x1b[0;33;40m', CommunicationTuning.fineTuneDataMarker(file_buffer, MESSAGE_MARKER_LENGTH),'\x1b[0;37;40m')
         else:
-            print('The first unique sequence of four letters, the data marker starts at: ', CommunicationTuning.fineTuneDataMarker(file_buffer))
-            print('The first unique sequence of fourteen letters, the data message starts at: ', CommunicationTuning.fineTuneDataMessage(file_buffer))
+            print('The first unique sequence of four letters, the data marker starts at: ', CommunicationTuning.fineTuneDataMarker(file_buffer, DATA_MARKER_LENGTH))
+            print('The first unique sequence of fourteen letters, the data message starts at: ', CommunicationTuning.fineTuneDataMarker(file_buffer, MESSAGE_MARKER_LENGTH))
 
 if DAY == 0 or DAY == 7:
     print("\n\n\n\n\--------------------\\\n >   To Be Continued  >\n/--------------------/\n\n\n")
