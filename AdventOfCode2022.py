@@ -15,7 +15,7 @@ print("....................................")
 
 
 
-DAY = 6
+DAY = 0
 
 PAINTING = []
 
@@ -100,6 +100,22 @@ if DAY == 0 or DAY == 6:
             print('The first unique sequence of fourteen letters, the data message starts at: ', CommunicationTuning.fineTuneDataMarker(file_buffer, MESSAGE_MARKER_LENGTH))
 
 if DAY == 0 or DAY == 7:
+    print("\n\n\no-,/O\\.-o-| Day 7 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day7.input") as file:
+        file_buffer = file.read()
+        file.close()
+        DISK_MAX = 70000000
+        FREE_SPACE = 30000000
+        Tree = CommunicationTuning.generate(file_buffer.splitlines())
+        if os.name == 'posix':
+            print('The total of all folders under 100000 in size: \x1b[0;33;40m', CommunicationTuning.calcDirSize(Tree, 100000),'\x1b[0;37;40m')
+            print('The most suitable folder to remove: \x1b[0;33;40m', CommunicationTuning.filesystemCleanup(Tree, DISK_MAX, FREE_SPACE),'\x1b[0;37;40m')
+        else:
+            print('The total of all folders under 100000 in size: ', CommunicationTuning.calcDirSize(Tree, 100000))
+            print('The most suitable folder to remove: ', CommunicationTuning.filesystemCleanup(Tree, DISK_MAX, FREE_SPACE))
+
+
+if DAY == 0 or DAY == 8:
     print("\n\n\n\n\--------------------\\\n >   To Be Continued  >\n/--------------------/\n\n\n")
 
 if os.name == 'posix':
