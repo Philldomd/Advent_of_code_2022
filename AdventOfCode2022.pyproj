@@ -35,6 +35,9 @@
     <Compile Include="CommunicationTuning.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TreeHouse.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SupplyStack.py">
       <SubType>Code</SubType>
     </Compile>
@@ -57,16 +60,13 @@
     <Content Include="Resources\day3.input" />
     <Content Include="Resources\day4.input" />
     <Content Include="Resources\day5.input" />
-    <Content Include="Resources\day6.1.input" />
     <Content Include="Resources\day6.input">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Resources\day7.1.input">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Resources\day7.input">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Resources\day8.input" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.11" />

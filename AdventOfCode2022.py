@@ -7,6 +7,7 @@ import RucksackControl
 import CampCleanup
 import SupplyStack
 import CommunicationTuning
+import TreeHouse
 
 
 print("....................................")
@@ -116,14 +117,26 @@ if DAY == 0 or DAY == 7:
 
 
 if DAY == 0 or DAY == 8:
+    print("\n\n\no-,/O\\.-o-| Day 8 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day8.input") as file:
+        file_buffer = file.read()
+        file.close()
+        if os.name == 'posix':
+            print('Number of visible trees in this forest: \x1b[0;33;40m', TreeHouse.findNumVisibleTrees(file_buffer),'\x1b[0;37;40m')
+            print('Tree with the highest scenic value: \x1b[0;33;40m', TreeHouse.findBestScenicTree(file_buffer),'\x1b[0;37;40m')
+        else:
+            print('Number of visible trees in this forest: ', TreeHouse.findNumVisibleTrees(file_buffer))
+            print('Tree with the highest scenic value: ', TreeHouse.findBestScenicTree(file_buffer))
+
+if DAY == 0 or DAY == 9:
     print("\n\n\n\n\--------------------\\\n >   To Be Continued  >\n/--------------------/\n\n\n")
 
-if os.name == 'posix':
+if os.name == 'posix' and DAY == 1000:
     print('      \x1b[4;37;40m        \x1b[0;37;40m                              \x1b[4;37;40m        \x1b[0;37;40m')
     print('     / \x1b[4;33;40m++\x1b[0;37;40m \\   \\                            / \x1b[4;33;40m++\x1b[0;37;40m \\   \\')
     print('    \x1b[4;37;40m/      \\   \\\x1b[0;37;40m                          \x1b[4;37;40m/      \\   \\\x1b[0;37;40m')
     print('\x1b[4;37;40m  \x1b[4;35;40m%\x1b[4;37;40m  \x1b[0;37;40m|\x1b[4;31;40m"m"m"\x1b[0;37;40m|\x1b[4;37;40m   |  \x1b[4;34;40m~\x1b[0;37;40m_     \x1b[1;33;40mPainting\x1b[0;37;40m     ___\x1b[4;33;40m~\x1b[0;37;40m_|\x1b[4;31;40m"m"u"\x1b[0;37;40m|\x1b[4;37;40m   |\x1b[4;32;40m¤\x1b[4;37;40m \x1b[0;37;40m\n\n\n')
     while len(PAINTING) != 0:
         print(PAINTING.pop())
-else:
+elif os.name != 'posix' and DAY == 1000:
     print("\n\nPainting is unsupported on this os: ",os.name)
