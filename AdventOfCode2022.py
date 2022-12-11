@@ -8,6 +8,7 @@ import CampCleanup
 import SupplyStack
 import CommunicationTuning
 import TreeHouse
+import RopeCalculator
 
 
 print("....................................")
@@ -16,7 +17,7 @@ print("....................................")
 
 
 
-DAY = 0
+DAY = 9
 
 PAINTING = []
 
@@ -129,6 +130,14 @@ if DAY == 0 or DAY == 8:
             print('Tree with the highest scenic value: ', TreeHouse.findBestScenicTree(file_buffer))
 
 if DAY == 0 or DAY == 9:
+    print("\n\n\no-,/O\\.-o-| Day 9 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day9.input") as file:
+        file_buffer = file.read()
+        file.close()
+        print('Number of visited nodes for tail: ', RopeCalculator.CalculateTailsPositions(file_buffer))
+
+
+if DAY == 0 or DAY == 10:
     print("\n\n\n\n\--------------------\\\n >   To Be Continued  >\n/--------------------/\n\n\n")
 
 if os.name == 'posix' and DAY == 1000:
