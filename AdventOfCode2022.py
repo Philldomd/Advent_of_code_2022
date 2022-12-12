@@ -153,7 +153,7 @@ if DAY == 0 or DAY == 10:
 
 if DAY == 0 or DAY == 11:
     print("\n\n\no-,/O\\.-o-| Day 11 |-o-./O\\,-o\n")
-    with utils.fileReader("Resources/day11.1.input") as file:
+    with utils.fileReader("Resources/day11.input") as file:
         file_buffer = file.read()
         file.close()
         MonkeyTrouble.ThrowingItems(file_buffer)
