@@ -50,6 +50,9 @@
     <Compile Include="RopeCalculator.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MonkeyTrouble.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="utils.py">
       <SubType>Code</SubType>
     </Compile>
@@ -71,6 +74,8 @@
     </Content>
     <Content Include="Resources\day8.input" />
     <Content Include="Resources\day9.input" />
+    <Content Include="Resources\day10.input" />
+    <Content Include="Resources\day11.input" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.11" />

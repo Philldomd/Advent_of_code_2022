@@ -9,6 +9,7 @@ import SupplyStack
 import CommunicationTuning
 import TreeHouse
 import RopeCalculator
+import MonkeyTrouble
 
 
 print("....................................")
@@ -17,7 +18,7 @@ print("....................................")
 
 
 
-DAY = 9
+DAY = 0
 
 PAINTING = []
 
@@ -134,10 +135,32 @@ if DAY == 0 or DAY == 9:
     with utils.fileReader("Resources/day9.input") as file:
         file_buffer = file.read()
         file.close()
-        print('Number of visited nodes for tail: ', RopeCalculator.CalculateTailsPositions(file_buffer))
-
+        if os.name == 'posix':
+            print('Number of visited nodes for tail, short rope: \x1b[0;33;40m', RopeCalculator.CalculateTailsPositions(file_buffer,2),'\x1b[0;37;40m')
+            print('Number of visited nodes for tail, long rope: \x1b[0;33;40m', RopeCalculator.CalculateTailsPositions(file_buffer,10),'\x1b[0;37;40m')
+        else:
+            print('Number of visited nodes for tail, short rope: ', RopeCalculator.CalculateTailsPositions(file_buffer,2))
+            print('Number of visited nodes for tail, long rope: ', RopeCalculator.CalculateTailsPositions(file_buffer,10))
 
 if DAY == 0 or DAY == 10:
+    print("\n\n\no-,/O\\.-o-| Day 10 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day10.input") as file:
+        file_buffer = file.read()
+        file.close()
+        print('The value of x in all cycles: ', CommunicationTuning.CycleSignalStrength(file_buffer))
+        print('CRT print: \n')
+        CommunicationTuning.DrawSignal(file_buffer)
+
+if DAY == 0 or DAY == 11:
+    print("\n\n\no-,/O\\.-o-| Day 11 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day11.1.input") as file:
+        file_buffer = file.read()
+        file.close()
+        MonkeyTrouble.ThrowingItems(file_buffer)
+        
+
+
+if DAY == 0 or DAY == 11:
     print("\n\n\n\n\--------------------\\\n >   To Be Continued  >\n/--------------------/\n\n\n")
 
 if os.name == 'posix' and DAY == 1000:

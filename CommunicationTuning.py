@@ -72,4 +72,58 @@ def filesystemCleanup(fileSystem, max, free):
     range = max - free
     value.extend(listDirs(fileSystem))
     return min([item for item in value if used - item <= range])
+
+def CycleSignalStrength(file_buffer):
+    cycle_stop = 20
+    cycle = 0
+    signal = 1
+    signals = []
+    def tick():
+        nonlocal signal, signals, cycle, cycle_stop
+        cycle += 1
+        if cycle == cycle_stop:
+            signals.append(signal*cycle)
+            cycle_stop += 40
+
+
+
+    for instruction in file_buffer.splitlines():
+        for command in instruction.split():
+            if command == 'noop':
+                tick()
+            elif command == 'addx':
+                tick()
+                tick()
+            else:    
+                signal += int(command)
+            
+        if cycle_stop > 220:
+            break
+    return sum(signals)
+
+def DrawSignal(file_buffer):
+    cycle = 0
+    signal = 1
+    def tick():
+        nonlocal cycle, signal
+        if cycle % 40 in (signal-1, signal, signal+1):
+            print('#', end="")
+        else:
+            print('.', end="")
+        cycle += 1
+        if cycle % 40 == 0:
+            print()
+        
+
+    for instruction in file_buffer.splitlines():
+        for command in instruction.split():
+            if command == 'noop':
+                tick()
+            elif command == 'addx':
+                tick()
+                tick()
+            else:    
+                signal += int(command)
+            
+
     
