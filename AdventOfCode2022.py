@@ -18,7 +18,7 @@ print("....................................")
 
 
 
-DAY = 0
+DAY = 11
 
 PAINTING = []
 
@@ -156,7 +156,8 @@ if DAY == 0 or DAY == 11:
     with utils.fileReader("Resources/day11.input") as file:
         file_buffer = file.read()
         file.close()
-        MonkeyTrouble.ThrowingItems(file_buffer)
+        MonkeyTrouble.ThrowingItems(file_buffer, 20, 'new // 3')
+        MonkeyTrouble.ThrowingItems(file_buffer, 10000, 'new % modmonkey')
         
 
 
