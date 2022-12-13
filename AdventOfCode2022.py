@@ -18,7 +18,7 @@ print("....................................")
 
 
 
-DAY = 11
+DAY = 13
 
 PAINTING = []
 
@@ -158,10 +158,23 @@ if DAY == 0 or DAY == 11:
         file.close()
         MonkeyTrouble.ThrowingItems(file_buffer, 20, 'new // 3')
         MonkeyTrouble.ThrowingItems(file_buffer, 10000, 'new % modmonkey')
-        
 
+if DAY == 0 or DAY == 12:
+    print("\n\n\no-,/O\\.-o-| Day 11 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day12.input") as file:
+        file_buffer = file.read()
+        file.close()
+        CommunicationTuning.FindBestSignalSpot(file_buffer)
+        CommunicationTuning.FindBestHickingTrail(file_buffer)
 
-if DAY == 0 or DAY == 11:
+if DAY == 0 or DAY == 13:
+    print("\n\n\no-,/O\\.-o-| Day 11 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day13.1.input") as file:
+        file_buffer = file.read()
+        file.close()
+        CommunicationTuning.DistresSignal(file_buffer)
+
+if DAY == 0 or DAY == 14:
     print("\n\n\n\n\--------------------\\\n >   To Be Continued  >\n/--------------------/\n\n\n")
 
 if os.name == 'posix' and DAY == 1000:

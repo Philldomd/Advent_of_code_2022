@@ -125,5 +125,102 @@ def DrawSignal(file_buffer):
             else:    
                 signal += int(command)
             
+def FindBestSignalSpot(file_buffer):
+    def adj(i, j):
+        return (i, j-1), (i+1, j), (i, j+1), (i-1, j)
+    
 
+    grid = {
+        (i,j): x
+        for i, row in enumerate(file_buffer.splitlines())
+        for j, x in enumerate(row)
+    }
+    start = next(k for k, v in grid.items() if v == 'S')
+    end = next(k for k, v in grid.items() if v == 'E')
+    grid[start] = 'a'
+    grid[end] = 'z'
+
+    visited = {}
+    queue = deque([(0,start)])
+
+    while len(queue) > 0:
+        t, p = queue.popleft()
+        if p in visited:
+            continue
+        visited[p]=t
+        val = ord(grid[p])
+        for n in adj(*p):
+            n_val = ord(grid.get(n, '{'))
+            if n_val - val > 1:
+                continue
+            queue.append((t+1, n))
+
+    print(visited[end])
+
+def FindBestHickingTrail(file_buffer):
+    def adj(i, j):
+        return (i, j-1), (i+1, j), (i, j+1), (i-1, j)
+    
+
+    grid = {
+        (i,j): x
+        for i, row in enumerate(file_buffer.splitlines())
+        for j, x in enumerate(row)
+    }
+    start = next(k for k, v in grid.items() if v == 'S')
+    end = next(k for k, v in grid.items() if v == 'E')
+    grid[start] = 'a'
+    grid[end] = 'z'
+    startpositions = []
+
+    for k, v in grid.items():
+        if v == 'a':
+            startpositions.append(k)
+    lengths = []
+
+    for starts in startpositions:
+        visited = {}
+        queue = deque([(0,starts)])
+        while len(queue) > 0:
+            t, p = queue.popleft()
+            if p in visited:
+                continue
+            visited[p]=t
+            val = ord(grid[p])
+            for n in adj(*p):
+                n_val = ord(grid.get(n, '{'))
+                if n_val - val > 1:
+                    continue
+                queue.append((t+1, n))
+        if end in visited:
+            lengths.append(visited[end])
+
+    
+    print(min(lengths))
+
+def cmp(x, y):
+    if isinstance(x, int) and isinstance(y, int):
+        return x - y
+
+    if isinstance(x, list) and isinstance(y, list):
+        for i, j in zip(x, y):
+            if result := cmp(i,j):
+                return result
+        return len(x) - len(y)
+    
+    if isinstance(x, list):
+        return cmp(x, [y])
+
+    if isinstance(y, list):
+        return cmp([x], y)
+
+    assert False
+
+def DistresSignal(file_buffer):
+    signals = [[eval(x), eval(y)] for x, y in list(map(lambda x: x.split() , file_buffer.split('\n\n')))]
+    values = 0
+    for i, signal in enumerate(signals):
+        if cmp(*signal) < 0:
+            values += i + 1
+    print(values)
     
