@@ -160,7 +160,7 @@ if DAY == 0 or DAY == 11:
         MonkeyTrouble.ThrowingItems(file_buffer, 10000, 'new % modmonkey')
 
 if DAY == 0 or DAY == 12:
-    print("\n\n\no-,/O\\.-o-| Day 11 |-o-./O\\,-o\n")
+    print("\n\n\no-,/O\\.-o-| Day 12 |-o-./O\\,-o\n")
     with utils.fileReader("Resources/day12.input") as file:
         file_buffer = file.read()
         file.close()
@@ -168,11 +168,12 @@ if DAY == 0 or DAY == 12:
         CommunicationTuning.FindBestHickingTrail(file_buffer)
 
 if DAY == 0 or DAY == 13:
-    print("\n\n\no-,/O\\.-o-| Day 11 |-o-./O\\,-o\n")
-    with utils.fileReader("Resources/day13.1.input") as file:
+    print("\n\n\no-,/O\\.-o-| Day 13 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day13.input") as file:
         file_buffer = file.read()
         file.close()
         CommunicationTuning.DistresSignal(file_buffer)
+        CommunicationTuning.SortOutSignal(file_buffer)
 
 if DAY == 0 or DAY == 14:
     print("\n\n\n\n\--------------------\\\n >   To Be Continued  >\n/--------------------/\n\n\n")

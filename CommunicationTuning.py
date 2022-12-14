@@ -204,7 +204,8 @@ def cmp(x, y):
 
     if isinstance(x, list) and isinstance(y, list):
         for i, j in zip(x, y):
-            if result := cmp(i,j):
+            result = cmp(i,j)
+            if result != 0:
                 return result
         return len(x) - len(y)
     
@@ -222,5 +223,22 @@ def DistresSignal(file_buffer):
     for i, signal in enumerate(signals):
         if cmp(*signal) < 0:
             values += i + 1
+        
     print(values)
-    
+
+def SortOutSignal(file_buffer):
+    signals = [[eval(x)] for x in file_buffer.split() if len(x) > 0]
+    signals.append(eval('[[6]]'))
+    signals.append(eval('[[2]]'))
+    n = len(signals)
+    for i in range(n):
+        done = True
+        for j in range(n - i - 1):
+            if cmp(signals[j], signals[j + 1]) > 0:
+                signals[j], signals[j + 1] = signals[j + 1], signals[j]
+                done = False
+        if done:
+            break
+
+    print((signals.index([[6]])+1) * (signals.index([[2]])+1))                
+
