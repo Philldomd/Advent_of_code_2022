@@ -240,5 +240,130 @@ def SortOutSignal(file_buffer):
         if done:
             break
 
-    print((signals.index([[6]])+1) * (signals.index([[2]])+1))                
+    print((signals.index([[6]])+1) * (signals.index([[2]])+1))  
 
+def SandCave(file_buffer):
+    rockLabyrint = [[x.strip()  for x in row.split('->')] for row in file_buffer.split('\n')]
+    minWidth = 500
+    maxWidth = 500
+    settled = 0
+    layout = deque([deque(['+'])])
+
+    def move(x, y):
+        if x == len(layout)-1 or y == len(layout[0])-1 or y < 0 or x < 0:
+            return 0, False
+        if layout[x + 1][y] == '.':
+            return move(x + 1, y)
+        elif layout[x + 1][y - 1] == '.':
+            return move(x + 1, y - 1)
+        elif layout[x + 1][y + 1] == '.':
+            return move(x + 1, y + 1)
+        else:
+            layout[x][y] = 'o'
+            return 1, True
+
+    def moveX(x, y):
+        if y == len(layout[0])-1:
+            for i in range(len(layout) - 1):
+                layout[i].append('.')
+            layout[len(layout)-1].append('#')
+        elif y < 0:
+            for i in range(len(layout) - 1):
+                layout[i].appendleft('.')
+            layout[len(layout)-1].appendleft('#')
+            y = 0
+        if layout[x + 1][y] == '.':
+            return moveX(x + 1, y)
+        elif layout[x + 1][y - 1] == '.':
+            return moveX(x + 1, y - 1)
+        elif layout[x + 1][y + 1] == '.':
+            return moveX(x + 1, y + 1)
+        elif layout[x][y] == '+':
+            layout[x][y] = '0'
+            return 1, False
+        else:
+            layout[x][y] = 'o'
+            return 1, True
+
+    def growCave(width, depth):
+        miW = minWidth
+        maW = maxWidth
+        if width < minWidth:
+            for _ in range(minWidth-width): 
+                for i in range(len(layout)):
+                    layout[i].appendleft('.')
+            miW = width
+        if width > maxWidth:
+            for _ in range(width-maxWidth): 
+                for i in range(len(layout)):
+                    layout[i].append('.')
+            maW = width
+        if depth - len(layout) >= 0:
+            for _ in range(len(layout)-1, depth):
+                layout.append(deque(['.' for _ in layout[0]]))
+        return miW, maW, len(layout)
+    
+    def rockLine(row):
+        pos_x, pos_y = list(map(int, row[0].split(',')))
+        pos_x -= minWidth
+        layout[pos_y][pos_x] = '#'
+        for i in range(1, len(row)):
+            x, y = list(map(int, row[i].split(',')))
+            x -= minWidth
+            if pos_x == x:
+                if pos_y < y:
+                    for s in range(pos_y, y+1):
+                        layout[s][pos_x] = '#'
+                else:
+                    for s in range(y, pos_y+1):
+                        layout[s][pos_x] = '#'
+            if pos_y == y:
+                if pos_x < x:
+                    for s in range(pos_x, x+1):
+                        layout[pos_y][s] = '#'
+                else:
+                    for s in range(x, pos_x+1):
+                        layout[pos_y][s] = '#'
+            pos_x, pos_y = x, y
+
+    for row in rockLabyrint:
+        for element in row:
+            column, stone = list(map(int, element.split(',')))
+            minWidth, maxWidth, d = growCave(column, stone)
+
+    #growCave(maxWidth+1, len(layout)+1)
+    #growCave(minWidth-1, 0)
+
+    for row in rockLabyrint:
+        rockLine(row)
+    con = True
+    sand = [0, layout[0].index('+')]
+    while con == True:
+        set_stone, con = move(*sand)
+        settled += set_stone
+
+    print(settled)
+
+    for i in range(len(layout)):
+        for p in range(len(layout[0])):
+            if layout[i][p] == 'o':
+                layout[i][p] = '.'
+
+    con = True
+    settled = 0
+    layout.append(deque(['.' for _ in layout[0]]))
+    layout.append(deque(['#' for _ in layout[0]]))
+    while con == True:
+        sand = [0, layout[0].index('+')]
+        set_stone, con = moveX(*sand)
+        settled += set_stone
+
+    print(settled)
+    paint = False
+    if paint:
+        for i in range(len(layout)):
+            for p in range(len(layout[0])):
+                print(layout[i][p], end='')
+            print()
+
+    

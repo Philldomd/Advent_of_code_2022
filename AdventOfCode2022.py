@@ -18,7 +18,7 @@ print("....................................")
 
 
 
-DAY = 13
+DAY = 14
 
 PAINTING = []
 
@@ -176,6 +176,13 @@ if DAY == 0 or DAY == 13:
         CommunicationTuning.SortOutSignal(file_buffer)
 
 if DAY == 0 or DAY == 14:
+    print("\n\n\no-,/O\\.-o-| Day 14 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day14.input") as file:
+        file_buffer = file.read()
+        file.close()
+        CommunicationTuning.SandCave(file_buffer)
+
+if DAY == 0 or DAY == 15:
     print("\n\n\n\n\--------------------\\\n >   To Be Continued  >\n/--------------------/\n\n\n")
 
 if os.name == 'posix' and DAY == 1000:
