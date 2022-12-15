@@ -1,5 +1,6 @@
 # After reading up on enumeration in pyhton i found a new more clean solution
 from collections import deque
+import re
 
 def fineTuneDataMarker(file_buffer, markerLength):
     for index, value in enumerate(file_buffer):
@@ -365,5 +366,44 @@ def SandCave(file_buffer):
             for p in range(len(layout[0])):
                 print(layout[i][p], end='')
             print()
+
+def findingBeacons(file_buffer):
+    minWidth, maxWidth, minDepth, maxDepth = 0, 0, 0, 0
+    S = set()
+    B = set()
+    def test(i,j,S):
+        for (sx, sy, d) in S:
+            dist = abs(i-sx) + abs(j-sy)
+            if dist <= d:
+                return False #Inside distance for S
+        return True 
+
+    for line in file_buffer.split('\n'):
+        sx, sy, bx, by = map(int, re.findall(r'-?\d+', line))
+        d = abs(sx - bx) + abs(sy- by)
+        S.add((sx,sy,d))
+        B.add((bx,by))
+        
+    minWidth = min(min( x for x, *_ in S ), min( x for x, *_ in B ))-(max(d for *_, d in S)//2)
+    maxWidth = max(max( x for x, *_ in S ), max( x for x, *_ in B ))+(max(d for *_, d in S)//2)
+    minDepth = min(min( y for _, y, _ in S ), min( y for *_, y in B ))-1
+    maxDepth = max(max( y for _, y, _ in S ), max( y for *_, y in B ))+1
+
+    spot = 0
+
+    for i in range(minWidth, maxWidth):
+        j = 2000000
+        #for j in range(minDepth, maxDepth):
+        if (i,j) not in B and not test(i,j,S):
+            spot+=1
+
+    print(spot)
+    
+
+
+
+    
+
+
 
     

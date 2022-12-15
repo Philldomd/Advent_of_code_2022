@@ -18,7 +18,7 @@ print("....................................")
 
 
 
-DAY = 14
+DAY = 15
 
 PAINTING = []
 
@@ -183,6 +183,13 @@ if DAY == 0 or DAY == 14:
         CommunicationTuning.SandCave(file_buffer)
 
 if DAY == 0 or DAY == 15:
+    print("\n\n\no-,/O\\.-o-| Day 15 |-o-./O\\,-o\n")
+    with utils.fileReader("Resources/day15.input") as file:
+        file_buffer = file.read()
+        file.close()
+        CommunicationTuning.findingBeacons(file_buffer)
+
+if DAY == 0 or DAY == 16:
     print("\n\n\n\n\--------------------\\\n >   To Be Continued  >\n/--------------------/\n\n\n")
 
 if os.name == 'posix' and DAY == 1000:
