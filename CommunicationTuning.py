@@ -393,11 +393,32 @@ def findingBeacons(file_buffer):
 
     for i in range(minWidth, maxWidth):
         j = 2000000
-        #for j in range(minDepth, maxDepth):
-        if (i,j) not in B and not test(i,j,S):
-            spot+=1
+        for j in range(minDepth, maxDepth):
+            if (i,j) not in B and not test(i,j,S):
+                spot+=1
 
     print(spot)
+    MIN = 0
+    MAX = 4_000_000
+    def gen_outskirts():
+        for sx, sy, d in S:
+            d = d + 1
+            p = [sx-d, sy]
+            for move in [(1,1),(-1,1),(-1,-1),(1,-1)]:
+                for _ in range(d):
+                    p[0] += move[0]
+                    p[1] += move[1]
+                    if MIN <= p[0] <= MAX and MIN <= p[1] <= MAX:
+                        yield p
+
+    for px, py in gen_outskirts():
+        for sx, sy, sd in S:
+            pd = abs(sx-px) + abs(sy-py)
+            if pd <= sd:
+                break
+        else:
+            print(px, py, px * 4000000 + py)
+            break
     
 
 
